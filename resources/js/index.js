@@ -1,6 +1,6 @@
 // getRSSFeedFromURL , Implements method to get rss feed from given url in json format
 async function getRSSFeedFromURL(url) {
-  let count = parseInt(10 + (25 - 10) * Math.random());
+  let count = parseInt(15 + (30 - 15) * Math.random());
   let conversionToJSONUrl =
     "https://api.rss2json.com/v1/api.json?api_key=akgtw7qdrkzvb7iw1srxvk3bto7zscc1xy8hcw1x&order_by=pubDate&count=" +
     count +
@@ -45,11 +45,11 @@ async function addRSSFeedToDOM(magazines) {
     accordionElement.setAttribute("class", "accordion-item");
     accordionElement.innerHTML = `
     <h2 class="accordion-header" id="accordionHeading${rank}">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${rank}" aria-expanded="true" aria-controls="collapse${rank}">
+      <button class="accordion-button text-muted" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${rank}" aria-expanded="true" aria-controls="collapse${rank}">
         ${titleOfAccordion}
       </button>
     </h2>
-    <div id="collapse${rank}" class="accordion-collapse collapse ${showOnDOMContentLoaded}" aria-labelledby="accordionHeading${rank}" data-bs-parent="#rssfeed">
+    <div id="collapse${rank}" class="accordion-collapse collapse ${showOnDOMContentLoaded}" aria-labelledby="accordionHeading${rank}" >
       <div class="accordion-body" id="accordionBody${rank}">
       </div>
     </div>
@@ -59,10 +59,10 @@ async function addRSSFeedToDOM(magazines) {
   // append newly created accordion element to dom , in container with id rssfeed 
 
     feedBox.append(accordionElement);
-    console.log(feedBox);
+
     const accordionArticlesBox = document.getElementById(`accordionBody${rank}`);
 
-    console.log(accordionArticlesBox);
+  
     addArticlesToAccordion(articles, accordionArticlesBox, rank);
 
   }
@@ -115,7 +115,6 @@ function addArticlesToAccordion(articles, feedBox, rank) {
 
   const innerCarouselBox = document.getElementById(`inner-carousel${rank}`);
 
-  console.log(articles);
   for (let i = 0; i < articles.length; i++) {
     // get each item of carousel as a separate article , articles shouold be rendered as a card
 
